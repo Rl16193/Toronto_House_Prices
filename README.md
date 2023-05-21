@@ -1,21 +1,22 @@
-# Toronto_House_Prices
+# Toronto_House_Price
 
 ## Data
 
-Housing Market Data for the last 4 years was obtained from Canada Mortage and Housing Corporation. https://www.cmhc-schl.gc.ca/en/professionals/housing-markets-data-and-research/housing-data/data-tables/housing-market-data. The type of units included are apartments and townhouses.
+We delve into the task of predicting housing prices in Toronto using different models. The dataset used is sourced from the Canada Mortgage and Housing Corporation (CMHC) and covers the housing market data for the last 4 years. Specifically, we focus on apartments and townhouses in Toronto. The average size of Toronto houses is approximately 1600 square feet, which can allow us to analyze the change in rates per square foot.
 
-The average value of the houses sold, new construction only is listed for each month. Months where insufficient houses where sold or the sale price was confidential we are unable to arrive at an average value. It is replaced with null. Areas with over 40 price values are considered for the predictive model.
+The housing market data used in this analysis was obtained from the Canada Mortgage and Housing Corporation. You can access the data tables and research reports from their website: CMHC Housing Market Data. https://www.cmhc-schl.gc.ca/en/professionals/housing-markets-data-and-research/housing-data/data-tables/housing-market-data.
+
+To ensure data reliability and accuracy, we consider only the average values of houses sold in new constructions for each month. In cases where insufficient houses were sold or the sale price was confidential, we replace the average value with null. For predictive modeling purposes, we focus on areas with over 40 price values, ensuring a sufficient sample size for robust analysis.
 
 
 ## Stationary and Non-Stationary Data
 
-AD Fuller test is conducted to determine this. Housing Prices for Toronto fall under stationary data. Housing prices for Milton fall under non-stationary data.
-We use log function to transform the data. We use differencing techniques to make non-stationary data, stationary.
-Then we compare ARIMA, SARIMA, RandomForest Regressor models on the house price data.
+We begin by conducting the Augmented Dickey-Fuller (ADF) test to determine the stationarity of the data. The housing prices in Toronto are found to be stationary, while the prices in Milton are non-stationary. To handle non-stationary data, we apply data transformations, including the use of the logarithmic function, and employ differencing techniques to make the data stationary.
+We applied various models including ARIMA, SARIMA, and RandomForestRegressor to predict housing prices in Toronto and Milton.
 
 ## Result
 
-1. The City of Toronto does not show a general upward trend that is expected for real estate pricing and observed in a few specific locations. 
+1. Unlike many other locations, Toronto does not exhibit a consistent upward trend in real estate pricing across the entire city. Instead, specific areas within Toronto experience notable variations in pricing trends.
 
 ![image](https://github.com/Rl16193/Toronto_House_Prices/assets/100053788/96b2e01c-036d-4c12-a70a-cdb145961d6e)
 
@@ -23,26 +24,28 @@ Then we compare ARIMA, SARIMA, RandomForest Regressor models on the house price 
 
 ![image](https://github.com/Rl16193/Toronto_House_Prices/assets/100053788/b328641d-1363-4a12-a44d-00bcaae9f2c0)
 
-2. The XGBoost model which works on both stationary and non-stationary performs well in both cases. Using this model will avoid the need to check for stationarity.
+2. The XGBoost model demonstrated robust performance in predicting housing prices in Toronto, irrespective of the stationarity of the data. Utilizing XGBoost eliminates the need for explicit stationarity checks, simplifying the modeling process.
 
+The mean absolute percentage error (stationary data): 0.0910546488062614
 
-The mean absolute percentage error (stationary data) : 0.0910546488062614
 The mean absolute percentage error(non-stationary data): 0.21738003036827325
+
+3. The ARIMA time series model consistently outperformed other models for both stationary and non-stationary data, showcasing its effectiveness in capturing and forecasting housing price patterns in Toronto.
 
 ### Stationary Data
 
-1. The SARIMA and ARIMA molde has the best performance in case of stationary data (City of Toronto). The absolute mean percentage error is 0.045 and a root mean square error of 94396.
+1. The SARIMA and ARIMA model has the best performance in the case of stationary data (City of Toronto). The absolute mean percentage error is 0.045 and the root mean square error of 94396.
 
 ![image](https://github.com/Rl16193/Toronto_House_Prices/assets/100053788/72c75738-0d4f-4347-9821-45814604cc42)
 
-2. The Random Forest Regressor gives a lower mean square error but absolute mean error and root mean square is higher.
+2. The Random Forest Regressor gives a lower mean square error but the absolute mean error and root mean square are higher.
 
 ![image](https://github.com/Rl16193/Toronto_House_Prices/assets/100053788/70072f02-f223-450c-8256-71743b1c3e01)
 
 
 ### Non-Stationary Data
 
-1. The SARIMA model provides better result in comparison. The root mean square error is 0.097 and the mean absolute percentage error is 1.27
+1. The ARIMA model provides better results in comparison. The root mean square error is 0.097 and the mean absolute percentage error is 1.27
 
 ![image](https://github.com/Rl16193/Toronto_House_Prices/assets/100053788/9924e977-f328-4f0b-b492-2d3745ef850a)
 
